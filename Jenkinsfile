@@ -10,7 +10,12 @@ pipeline {
             steps {
               git credentialsId: 'ssh_key', url: 'https://github.com/kesav-devops/ks.git'
             }
-            }  
+            }
+         stage('maven version') {
+            steps {
+               sh 'mvn --version'               
+            }
+            } 
         stage('clean') {
             steps {
                sh 'mvn clean'               
