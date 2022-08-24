@@ -11,7 +11,7 @@ pipeline {
               git credentialsId: 'ssh_key', url: 'https://github.com/kesav-devops/ks.git'
             }
             }
-         stage('maven version') {
+        stage('maven version') {
             steps {
                sh 'mvn --version'               
             }
@@ -21,7 +21,7 @@ pipeline {
                sh 'mvn clean'               
             }
             }
-         stage('validate') {
+        stage('validate') {
             steps {
                 sh 'mvn validate'
             }
@@ -31,12 +31,19 @@ pipeline {
                 sh 'mvn compile'
             }
             }
-         stage('package') {
+        stage('sonarQube scan') {
+            steps {
+                sh 'mvn sonar:sonar \
+                      -Dsonar.host.url=http://65.0.31.80:9000 \
+                      -Dsonar.login=d644ac90ab3bc2b35853d52e9fc2d986dbec90df'
+            }
+            }
+        stage('package') {
             steps {
                 sh 'mvn package'
             }
             }
-         stage('deploy') {
+        stage('deploy') {
             steps {
                 sh 'mvn deploy'
             }
