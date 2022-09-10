@@ -34,8 +34,9 @@ pipeline {
         stage('sonarQube scan') {
             steps {
                 sh 'mvn sonar:sonar \
-                      -Dsonar.host.url=http://13.233.224.189:9000 \
-                      -Dsonar.login=3fd9b1c6e191bfb06f5495249c941305c6e36866'
+                      -Dsonar.host.url=http://3.108.191.185:9000 \
+                      -Dsonar.login=097561b8f61b4c76d20d4b1e877819febeecfbd5'	
+                                     
             }
             }
         stage('package') {
